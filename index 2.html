@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        speed
+    </head>
+    <body>
+        <script>
+
+const speed = prompt("Enter the speed so that we can confirm the status below")
+
+const speedInt = Number(speed)
+
+//calling the SpeedStatus function
+SpeedStatus(speedInt);
+
+function SpeedStatus(speed) {
+    const KmPerPoint = 5;
+    const LimitofSpeed=70;
+
+    if (speed < LimitofSpeed + KmPerPoint) {
+        alert("OK")
+        return;
+    }
+
+    const points = Math.floor( (speed - LimitofSpeed) / KmPerPoint);
+    if (points >=12) {
+        alert("your licences has been suspended")
+    }else {
+        alert('points : ${points}')
+    }
+
+}
+        </script>
+    </body>
+    
+    
+    
+</html>
