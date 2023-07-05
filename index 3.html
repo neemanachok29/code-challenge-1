@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NET SALARY CALCULATOR</title>
+    
+</head>
+<body>
+    <script>
+
+        // get input value from users
+const basicSalary= parseFloat(prompt("Enter your basic salary:"));
+const benefits = parseFloat(prompt("Enter your benefits:"));
+
+
+
+// Define tax rates 
+const taxRates = [
+    {min: 0, max:24000, rate: 0.1},
+    {min: 24000 , max:40667, rate: 0.15},
+    {min: 40667, max:57333, rate: 0.20},
+    { min: 57333, max:150000, rate:0.25},
+    {min: 74000, max:150000, rate: 0.3},
+    {min: 150000, max:99999999, rate:0.35},
+];
+
+// define NHIF and NSSF
+const nhifRate = 0.017;
+const nssfRate =0.012;
+
+
+
+// calculate gross salary
+const grossSalary = basicSalary + benefits;
+ 
+// calculate payee (tax)
+let payee =0;
+let taxableIncome = grossSalary - (nhifRate * grossSalary) - (nssfRate * grossSalary * 2);
+for (let i = 0; i < taxRates.length; i++) {
+    const taxBracket = taxRates[i];
+    if (taxableIncome > taxBracket.min) {
+        const taxableAmount =Math.min(taxableIncome- taxBracket.min, taxBracket.max .taxBracket.payee) += taxableIncome * taxBracket.rate;
+    };
+        
+    }
+
+// calculate NHIF and NSSF deductions
+const nhifDeductions = Math.min(nhifRate *grossSalary, 1700);
+const nssfDeductions = nssfRate * grossSalary *2
+
+// calculate net salary
+const netSalary = grossSalary - payee -nhifDeductions - nssfDeductions;
+
+// output results
+console.log(`Gross salary; ${grossSalary}`);
+console.log(`payee (tax): ${payee}`);
+console.log(`NHIF deductions: ${nhifDeductions}`);
+console.log(`NSSF deductions: ${nssfDeductions}`);
+console.log(`Net salary; ${netSalary}`);
+
+    </script>
+
+
+</body>
+</html>
